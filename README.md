@@ -215,6 +215,7 @@ git reset과 git revert는 모두 변경사항을 되돌리는 데 사용되지�
 * git revert는 공용 브랜치에서 안전하게 사용될 수 있으며, 히스토리를 변경하지 않고 새로운 '되돌림' 커밋을 생성한다. 이러한 이유로, 되돌리고 싶은 변경 사항이 공개된 저장소에 있을 때는 git revert를 사용하는 것이 좋다.
 
 ## git branch
+![git-V](https://github.com/FE-SW/StudyGit/assets/54196723/ac4ff3ef-12f2-45c3-8bca-a45bf68aa15c)
 git branch 명령어는 브랜치와 관련된 다양한 작업을 수행하는 데 사용된다. 이 명령어를 사용하면 새 브랜치를 생성하거나 삭제하고, 현재 프로젝트에서 사용 중인 브랜치 목록을 볼 수 있으며, 다양한 추가 작업을 수행할 수 있다.
 
 * -a, --all: 로컬 및 원격 브랜치를 모두 나열한다.
@@ -232,6 +233,7 @@ git branch 명령어는 브랜치와 관련된 다양한 작업을 수행하는 
 * -u, --set-upstream-to <upstream>: 지정된 브랜치에 대한 업스트림(원격 추적) 브랜치를 설정한다.
 
 ## git checkout
+![C4BCo](https://github.com/FE-SW/StudyGit/assets/54196723/d959758f-252a-41c7-b8d9-fc78a41c455b)
 git checkout 명령어는 다른 브랜치로 전환하거나 작업 디렉토리에서 특정 파일이나 커밋을 체크아웃하는 데 사용된다. 이를 통해 과거의 특정 커밋으로 돌아갈 수 있고, 다른 브랜치로 컨텍스트를 전환할 수 있으며, 작업 트리에서 변경된 파일을 원래 상태로 되돌릴 수 있다
 
 * -b: 새 브랜치를 생성하고 그 브랜치로 체크아웃한다. 사용 예: git checkout -b [new-branch-name]
@@ -248,6 +250,7 @@ git checkout 명령어는 다른 브랜치로 전환하거나 작업 디렉토�
 Git 2.23 이상 버전에서는, git checkout의 기능이 두 개의 분리된 명령어로 분리되었다.(git switch와 git restore) git switch는 브랜치 전환에 사용되고, git restore는 파일을 특정 커밋이나 상태로 되돌리는 데 사용된다. 이 변경은 git checkout의 사용 사례가 너무 다양하여 명령어의 목적이 모호해지는 것을 방지하기 위한 것이다.
 
 ## git switch
+![checkout-branch](https://github.com/FE-SW/StudyGit/assets/54196723/cb7177ea-ad57-4c18-a5e1-8f83c423f3de)
 git switch는 작업 중인 브랜치를 변경하는데 사용된다. 이전에는 git checkout 명령어가 파일의 체크아웃 및 브랜치 전환에 모두 사용되었지만, git switch는 브랜치 전환에 특화된 명령어로 이 두 기능을 명확히 구분한다.
 
 * -c, --create: 새 브랜치를 생성하고 그 브랜치로 전환합니다. 사용 예: git switch -c new-feature
@@ -266,6 +269,24 @@ git restore는 작업 디렉토리의 파일이나 인덱스를 특정 상태로
 * --staged: 스테이징 영역에 있는 변경사항을 복원한다. 파일을 스테이지 했던 변경사항이 되돌려지고 스테이징 영역이 이전 커밋 상태(또는 지정된 소스)로 복원된다. 하지만 작업 디렉토리의 파일은 그대로 유지된다. 사용 예: git restore --staged file.txt
 * --ignore-unmerged: 병합 중인 파일(즉, 현재 병합 중이거나 병합 충돌이 발생한 파일)을 무시하고 다른 파일들에 대해서만 복원 작업을 수행한다. 병합 중에 충돌이 발생했을 때, 이 옵션을 사용하면 아직 해결되지 않은 충돌이 있는 파일을 제외하고 나머지 파일들을 지정한 상태(예를 들어, 특정 커밋 또는 HEAD)로 되돌릴 수 있다. 이는 병합 충돌 해결 중에 다른 변경 사항을 롤백하고 싶을 때 유용할 수 있다. 사용 예: git restore --ignore-unmerged
 * -p, --patch:  git의 "패치 모드"를 사용하여 파일의 변경 사항을 부분적으로 되돌릴 수 있게 해준다. 이 모드는 사용자에게 각 변경된 부분에 대해 개별적으로 검토하고, 그 중 어떤 것을 되돌릴지 선택할 수 있는 기능을 제공한다. 이는 파일 전체를 되돌리는 것이 아니라, 파일 내에서 특정 변경된 섹션만을 선택적으로 되돌리고 싶을 때 유용하다. 명령어를 실행하면, 콘솔에 변경 사항이 표시되며, 사용자는 각 변경 사항을 개별적으로 되돌릴지 여부를 결정할 수 있다. 사용 예: git restore -p file.txt
+
+
+## checkout,switch,restore 차이점 
+| 기능/명령어     | git checkout                     | git switch                         | git restore                      |
+|-----------------|----------------------------------|------------------------------------|----------------------------------|
+| 소개            | 브랜치 변경 및 파일 체크아웃     | 브랜치를 변경 (v2.23.0부터 도입)   | 작업 디렉토리의 파일 복원 (v2.23.0부터 도입) |
+| 브랜치 전환     | 가능                             | 가능 (이 기능에 특화)              | 불가능                           |
+| 파일 복원       | 가능 (스테이지와 작업 디렉토리)  | 불가능                             | 가능 (이 기능에 특화)            |
+| 사용하기        | 초기 사용자도 쉽게 접근 가능    | 명확한 명령으로 혼동 줄임          | 파일 상태를 명확하게 복원        |
+| 안전성          | 잘못된 사용으로 데이터 손실 가능 | 안전한 브랜치 전환 제공            | 작업 내용을 안전하게 복원        |
+
+* git checkout: 이전 버전의 Git에서는 브랜치를 전환하거나 파일을 체크아웃하는 데 사용되었다. 하지만, 사용자들 사이에서 명령어의 용도가 혼동되는 경우가 많았다.
+* git switch: 브랜치를 전환하는 기능에 특화되어 있다. 브랜치를 전환하는 것이 더 명확하고 직관적이어서 사용자가 혼동할 일이 적다.
+* git restore: 작업 디렉토리의 파일을 복원하는 데 사용된다. 이 명령은 특히 파일의 변경 사항을 되돌리는 데 중점을 둔다.
+
+이 세 명령어 간의 주요 차이점은 사용 목적과 안전성에 있다. git switch와 git restore는 사용자가 실수로 데이터를 잃어버릴 위험을 줄이기 위해 도입된 명령어이다.
+
+
 
 ## git stash
 ![git-stash-untracked](https://github.com/FE-SW/StudyGit/assets/54196723/46d933dc-567d-44b5-97f5-c82e99caf163)
@@ -303,6 +324,7 @@ git stash는 변경 사항을 스택에 저장한다. 이 스택은 전역적으
 * 3.git stash pop: 이전에 스태시에 저장했던 변경 사항을 다시 적용한다. 이 단계에서 변경 사항과 새로 통합된 커밋 사이의 충돌이 발생할 수 있으므로, 충돌 해결이 필요할 수 있다.
 
 ## git diff
+![gitdiffmarklodato](https://github.com/FE-SW/StudyGit/assets/54196723/f0419528-6a2a-4e6f-bf80-f6702fee5559)
 git diff 명령어는 커밋, 브랜치, 파일 등 간의 차이점을 보여준다. 이를 통해 아직 스테이지되지 않은 변경 사항, 스테이지된 변경 사항, 두 커밋 간의 차이점 등을 확인할 수 있다. 이는 코드 리뷰 시 코드 변경 사항을 확인하거나, 버그를 추적할 때 수정된 부분을 찾는 데 유용하다.
 
 * --staged (또는 --cached): 스테이징 영역에 있는 파일과 마지막 커밋 사이의 차이를 보여준다. 사용 예: git diff --staged
@@ -315,6 +337,7 @@ git diff 명령어는 커밋, 브랜치, 파일 등 간의 차이점을 보여�
 * [첫번째 브랜치 또는 커밋] [두번째 브랜치 또는 커밋]: 두 개의 브랜치나 커밋 사이의 차이점을 보여준다. 사용 예: git diff master feature-branch
 
 ## git remote
+![R1280x0-2](https://github.com/FE-SW/StudyGit/assets/54196723/0b01427e-701d-423b-b88e-b842f0ebce4f)
 git remote 명령어는 원격 저장소를 관리하기 위한 명령어이다. 이를 통해 사용자는 원격 저장소를 추가, 조회, 수정, 삭제할 수 있으며, 원격 저장소의 URL을 확인하거나 변경할 수도 있다.
 
 * add [name] [url]: 새로운 원격 저장소를 추가한다. 사용 예: git remote add origin url
@@ -324,5 +347,34 @@ git remote 명령어는 원격 저장소를 관리하기 위한 명령어이다.
 * get-url [name]: 원격 저장소의 URL을 가져온다. 사용 예: git remote get-url origin
 * show [name]: 특정 원격 저장소의 세부 정보를 보여준다. 사용 예: git remote show origin
 * prune [name]: 로컬에는 있지만 원격에는 더 이상 존재하지 않는 참조(브랜치)를 정리한다. 사용 예: git remote prune origin
+
+## git config
+git config 명령어는 Git의 설정 변수를 조회하거나 설정할 수 있게 해주는 명령어이다. 이 설정들은 시스템 전체, 특정 사용자, 또는 특정 프로젝트에 적용될 수 있다. 이러한 구성은 Git 작업의 많은 측면을 제어하는 데 사용된다, 예를 들면 사용자의 이메일, 사용자 이름, 사용하는 에디터, 사용하는 diff 알고리즘 등을 설정할 수 있다.
+
+* --local: 설정이 해당 저장소에만 적용된다(기본). .git/config 파일에 저장된다. 사용 예: git config --local user.name "Your Name"
+* --global: 설정이 시스템의 현재 사용자에게 적용된다. ~/.gitconfig 또는 ~/.config/git/config 파일에 저장돈다. 사용 예: git config --global user.email "your.email@example.com"
+* --system: 설정이 시스템의 모든 사용자에게 적용된다. /etc/gitconfig 파일에 저장된다. 사용 예: git config --system core.editor "vim"
+* --list (또는 -l): 저장된 모든 설정과 값을 리스트 형태로 보여준다. 사용 예: git config --list
+* --unset: 특정 설정 값을 제거한다. 사용 예: git config --unset user.email
+* --get: 특정 설정 값의 현재 값을 조회한다. 사용 예: git config --get user.name
+* --add: 기존 값에 새로운 값을 추가한다. 사용 예: git config --add user.name "Another Name"
+* --replace-all: 특정 설정의 모든 값을 주어진 값으로 바꾼다. 사용 예: git config --replace-all user.email "new.email@example.com"
+* --edit: 시스템의 기본 에디터를 사용하여 설정 파일을 직접 연다. 사용 예: git config --edit
+
+## git clone
+git clone은 원격 저장소의 복사본을 로컬 시스템에 만드는 데 사용되는 명령어이다. 이것은 실질적으로 저장소의 모든 데이터(브랜치, 태그, 커밋 이력 등)를 포함하여 원격 저장소를 로컬로 "복제"한다. 이렇게 하면 로컬 환경에서 코드를 검토, 수정, 테스트 할 수 있으며 필요한 경우 변경 사항을 원격 저장소에 다시 푸시할 수 있다.
+
+* -l, --local: 동일한 시스템에 있는 원격 저장소를 복제할 때 파일을 복사하는 대신 하드 링크를 사용한다. 사용 예: git clone --local /path/to/local/repo
+* -s, --shared: 원격 저장소와 같은 객체를 로컬 저장소에서 공유한다, 최적화된 복제를 위한 것. 사용 예: git clone --shared /path/to/local/repo
+* -q, --quiet: 작업 중인 진행 상황이나 정보를 출력하지 않는다, 조용한(clone) 모드이다. 사용 예: git clone --quiet url
+* -v, --verbose: 자세한 정보를 출력하면서 복제를 진행한다. 사용 예: git clone --verbose url
+* --progress: 진행 상황을 출력합니다(기본적으로 터미널에서는 활성화 되어 있음). 사용 예: git clone --progress url
+* -n, --no-checkout: 복제 후에 "HEAD"를 체크아웃하지 않는다. 사용 예: git clone --no-checkout url
+* --bare: 작업 디렉토리 없이 'bare' 저장소를 만든다. (즉, .git 폴더만 있음) 사용 예: git clone --bare url
+* --mirror: 원격 저장소를 미러링한다, 'bare' 저장소를 생성하지만 모든 참조(refs)도 복사한다. 사용 예: git clone --mirror url
+* -b, --branch: 지정된 브랜치만 로컬로 복제한다.(기본값은 원격 저장소의 기본 브랜치) 단, 저장소의 나머지 내용(커밋, 히스토리 등)은 다운로드된다 사용 예: git clone --branch develop url
+* --single-branch: 하나의 브랜치만 복제한다. 지정된 브랜치의 커밋 히스토리만 가져오는 "얕은" 복제를 수행하게 되어, 다운로드 크기를 줄이는 데 도움이 될 수 있다. 사용 예: git clone --single-branch --branch develop url
+* --depth: 지정된 커밋만큼의 최근 이력을 가진 얕은 복제(shallow clone)를 수행한다. 사용 예: git clone --depth 1 url
+* --recurse-submodules: 저장소의 서브모듈도 함께 복제한다. 사용 예: git clone --recurse-submodules url
 
 
