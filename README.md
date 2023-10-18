@@ -1,6 +1,8 @@
 # Git 영역 
-![1_zpvd5fjZAFGsVAEsvMGKxA](https://github.com/FE-SW/StudyGit/assets/54196723/dd0e18e0-8285-4166-8737-f3be9ae2ef25)
-
+<p float="left" align="center">
+  <img src="https://github.com/FE-SW/StudyGit/assets/54196723/dd0e18e0-8285-4166-8737-f3be9ae2ef25" width="45%" align="middle" />
+  <img src="https://github.com/FE-SW/StudyGit/assets/54196723/fdf72f55-7ca0-4a7c-b317-62441c385168" width="45%" align="middle" /> 
+</p>
 <b>Working Directory:</b><br/>
 작업 디렉토리는 프로젝트의 실제 파일들이 위치하는 곳이다. 이곳에 있는 파일들은 아직 버전 관리에 포함되지 않은 상태이거나, 수정 중인 파일일 수 있다. 여기서 사용자는 파일을 생성, 수정, 삭제 등의 작업을 하며 코드를 편집한다.
 
@@ -431,15 +433,26 @@ git fetch origin feat를 실행했을 때 "origin/feat"라는 로컬 브랜치�
 * --dry-run: 실제로 가져오지 않고 가져올 내용만 확인한다. 사용 예: git fetch --dry-run origin branch-name
 
 ## git merge 
+![git-three-way-merging](https://github.com/FE-SW/StudyGit/assets/54196723/9e69b1bb-950a-4f27-bdb2-45861012c8a5)
 git merge 명령어는 두 개 또는 그 이상의 개발 히스토리를 통합한다. 주로 두 개의 브랜치를 병합할 때 사용된다.
 
 * --no-commit: 병합은 이루어지지만, 병합 커밋은 자동으로는 이루어지지 않는다. 사용자가 수동으로 커밋해야 한다. 사용 예: git merge --no-commit feature-branch
+![05 04 01-2](https://github.com/FE-SW/StudyGit/assets/54196723/8a81d3c9-2947-4cc2-a3dd-cd4d182a8ce0)
+* --ff: "fast-forward" 병합을 강제하는 옵션이다. 이 경우, 현재 브랜치가 병합될 브랜치의 앞에 있지 않다면, Git은 병합 커밋 없이 현재 브랜치를 병합할 브랜치의 최신 커밋으로 갱신한다. 사용 예: git merge --ff feature-branch
 * --no-ff: 항상 병합 커밋을 생성하며, "fast-forward" 병합을 수행하지 않는다. 이 옵션은 두 브랜치의 히스토리를 유지한다. 사용 예: git merge --no-ff feature-branch
 * --ff-only: "fast-forward" 병합만 수행하며, "fast-forward" 병합이 불가능할 경우 병합하지 않고 실패한다.(현재 체크아웃된 브랜치의 헤드가 feature-branch의 특정 커밋을 기반으로 한 후속 커밋이 없음을 의미) 사용 예: git merge --ff-only feature-branch
+![05 04 06](https://github.com/FE-SW/StudyGit/assets/54196723/69aab496-3ee4-4404-83af-0bbf9b2cd87d) 
 * --squash: 변경 사항을 하나의 새 커밋으로 병합하지만, 병합 커밋은 생성하지 않는다. feature-branch의 모든 변경 사항을 하나의 커밋으로 압축하지만, 자동으로 커밋하지는 않는다.스테이징 영역에 변경 사항들이 추가되어 기다리는 상태가 된다. 사용 예: git merge --squash feature-branch
 * --abort: 병합 중 문제가 발생한 경우, 병합 이전 상태로 되돌린다. 사용 예: git merge --abort
 * -m: 병합 커밋에 사용될 커밋 메시지를 지정한다. 사용 예: git merge -m "Merge feature branch" feature-branch
 
+### 정리
+* git merge --ff [브랜치명] : fast-forward 관계에 있으면 commit을 생성하지 않고 현재 브랜치의 참조 값 만 변경(default)
+* git merge --no-ff [브랜치명] : fast-forward 관계에 있어도 merged commit 생성
+* git merge --squash [브랜치명] : fast-forward 관계에 있어도 merged commit 생성, merging 브랜치 정보 생략
+
+
+### 병합 커밋,Fast-forward 차이점
 | 구분 | 병합 커밋(Merge Commit) | Fast-forward |
 | --- | --- | --- |
 | 정의 | 두 개의 브랜치를 병합할 때 생성되는 특별한 커밋이다. 병합 커밋은 두 부모를 가지며, 병합하는 브랜치의 히스토리를 모두 포함한다. | "Fast-forward"는 현재 브랜치(일반적으로 'master')가 병합하려는 브랜치(예: 'feature-branch')로 "앞당겨지는" 상황을 의미한다. 이 경우 별도의 병합 커밋 없이도 병합할 수 있다. |
@@ -447,6 +460,7 @@ git merge 명령어는 두 개 또는 그 이상의 개발 히스토리를 통�
 | 사용 시나리오 | 팀이 공동으로 작업하는 브랜치에서 여러 개발자가 다양한 기능을 개발할 때 유용하다. 병합 커밋을 통해 언제 어떤 기능이 추가되었는지 쉽게 추적할 수 있다. | 개별적으로 작업한 작은 기능이나, 병합할 커밋이 현재 브랜치의 앞쪽에만 있는 경우에 유용하다. 히스토리를 간결하게 유지하고 싶을 때 사용한다. |
 
 ## git rebase 
+![Rebasing-in-git](https://github.com/FE-SW/StudyGit/assets/54196723/ff2f84c6-ebaf-4b59-a198-c8d91d61d5cb)
 git rebase는 한 브랜치에서 만든 커밋들을 다른 브랜치로 옮겨서(재배치해서) 기존의 커밋들 위에 적용하는 과정이다. 이 과정은 커밋 히스토리를 더 깔끔하게 만들어주며, 병합된 커밋들을 선형적으로 만들어주기 때문에 프로젝트의 히스토리를 더 읽기 쉽게 해준다.
 그러나, rebase는 기존의 커밋 히스토리를 변경하기 때문에 주의해서 사용해야 한다. 이미 공개된 원격 브랜치의 커밋을 rebase하면 커밋의 해시가 변경되어, 다른 이력과 충돌할 가능성이 있다. 이런 이유로 rebase는 주로 로컬 브랜치에서 사용하는 것이 좋다.
 
@@ -458,6 +472,8 @@ git rebase는 한 브랜치에서 만든 커밋들을 다른 브랜치로 옮겨
 * --edit-todo: 인터랙티브 모드에서 할 일 목록을 편집한다. 사용 예: git rebase --edit-todo
 * -p, --preserve-merges: 리베이스하는 동안 병합 커밋을 유지하려고 시도한다. 사용 예: git rebase -p master(이는 master로 리베이스하면서 병합 커밋도 유지한다.)
 
+![image](https://github.com/FE-SW/StudyGit/assets/54196723/04a1158e-b189-43e0-80f8-6671591fcdb2)
+
 | 기준            | merge                                            | rebase                                        |
 |-----------------|--------------------------------------------------|-----------------------------------------------|
 | 목적            | 두 브랜치의 히스토리를 합친다.                    | 한 브랜치의 커밋을 다른 브랜치 위로 옮긴다.       |
@@ -465,6 +481,11 @@ git rebase는 한 브랜치에서 만든 커밋들을 다른 브랜치로 옮겨
 | 커밋            | 새로운 '병합 커밋'을 생성한다.                     | 기존 커밋을 재사용하거나 새로운 커밋을 만든다.     |
 | 충돌            | 한 번에 처리되며, 병합 커밋에서 확인할 수 있다. | 각 커밋마다 발생할 수 있으며, 각각 해결해야 한다. |
 | 공유된 브랜치   | 안전하다. 공유된 브랜치의 커밋 히스토리를 변경하지 않는다. | 주의가 필요하다. 공유된 브랜치의 커밋 히스토리를 변경한다. |
+
+
+
+# 참고
+* https://wikidocs.net/book/7060
 
 
 
