@@ -10,6 +10,26 @@
 <b>Repository:</b><br/>
 레포지토리는 프로젝트의 모든 파일, 버전 정보, 변경 이력 등을 저장하는 곳이다. 로컬 레포지토리는 개인 컴퓨터에 파일 시스템의 일부로 존재하며, 원격 레포지토리는 GitHub, GitLa 같은 서비스에 호스팅될 수 있다. "git commit" 명령어는 스테이징 영역의 변경 사항을 로컬 레포지토리에 저장한다.
 
+# Git 파일상태
+![R1280x0](https://github.com/FE-SW/StudyGit/assets/54196723/0dfdda37-6734-4fde-8e89-33d631d2a6e1)
+git의 4가지 상태는 Git의 핵심 사이클을 이루며, 파일이 시간이 지나며 이 상태들 사이를 이동한다. 개발자는 git status 명령을 사용하여 이러한 상태를 확인할 수 있다. 이를 통해 어떤 파일이 커밋되었는지, 어떤 파일이 수정되었지만 아직 커밋되지 않았는지, 그리고 어떤 파일이 Git에 의해 전혀 관리되지 않고 있는지를 알 수 있다.
+
+<b>Untracked (추적되지 않음):</b>
+이 상태의 파일은 Git 디렉토리에 존재하지만, Git의 버전 관리 밑에 두지 않은 파일들이다. 이는 새로운 파일이 생성되었지만 아직 한 번도 git add 명령을 통해 스테이징 영역에 추가되지 않았기 때문일 수 있다.
+이 파일들은 로컬로만 존재하며, Git은 이 파일들의 존재를 알지만 아직 버전 관리를 하지 않는다.
+
+<b>Unmodified (수정되지 않음):</b>
+이 상태의 파일은 이전에 이미 Git에 커밋된 적이 있는 파일들로, 마지막 커밋 이후로 아무런 변경이 없는 파일들을 말한다.
+즉, 파일이 변경되지 않았으므로 Git에 다시 커밋할 필요가 없다.
+
+<b>Modified (수정됨):</b>
+이 상태의 파일은 마지막 커밋 이후에 변경이 발생했지만, 아직 로컬 데이터베이스에 커밋되기 위한 스테이징 영역에 추가되지 않은 파일들을 말한다.
+git add 명령을 사용하여 이 변경을 스테이징 영역에 추가하기 전까지는 Git은 이 변경 사항을 추적하지 않는다.
+
+<b>Staged (스테이징됨):</b>
+이 상태의 파일은 현재 수정되고 스테이징 영역에 추가되어, 다음 커밋에 포함될 준비가 된 파일들을 말한다.
+git commit 명령을 사용하면, 스테이징 영역의 이 변경사항이 로컬 데이터베이스에 저장된다.
+
 # 커밋참조
 Git의 핵심 요소 중 하나는 코드베이스의 변화를 "커밋" 단위로 추적하는 것이다. 커밋은 프로젝트 히스토리의 기본 구성 요소로, 파일에 대한 변경 사항의 집합, 그리고 그 변경에 대한 설명이 포함된 메시지를 담고 있다. 이렇게 각 커밋은 코드 변경의 타임스탬프와 작성자 정보를 가지며, 이전 상태로부터의 구별 가능한 스냅샷을 형성한다. 따라서 Git의 히스토리는 이러한 커밋들의 연속으로 이루어져 있으며, 개발자들은 이를 통해 프로젝트의 변화를 세밀하게 추적하고 관리할 수 있다.
 
@@ -61,27 +81,6 @@ A---B---C---D (HEAD~1)---E (HEAD)
 
 
 HEAD로부터의 상대적 위치를 나타내는데, ~는 몇 단계의 조상을 나타내는 반면, ^는 병합된 부모들 중 특정 부모를 지정함
-
-# Git 파일상태
-![R1280x0](https://github.com/FE-SW/StudyGit/assets/54196723/0dfdda37-6734-4fde-8e89-33d631d2a6e1)
-git의 4가지 상태는 Git의 핵심 사이클을 이루며, 파일이 시간이 지나며 이 상태들 사이를 이동한다. 개발자는 git status 명령을 사용하여 이러한 상태를 확인할 수 있다. 이를 통해 어떤 파일이 커밋되었는지, 어떤 파일이 수정되었지만 아직 커밋되지 않았는지, 그리고 어떤 파일이 Git에 의해 전혀 관리되지 않고 있는지를 알 수 있다.
-
-<b>Untracked (추적되지 않음):</b>
-이 상태의 파일은 Git 디렉토리에 존재하지만, Git의 버전 관리 밑에 두지 않은 파일들이다. 이는 새로운 파일이 생성되었지만 아직 한 번도 git add 명령을 통해 스테이징 영역에 추가되지 않았기 때문일 수 있다.
-이 파일들은 로컬로만 존재하며, Git은 이 파일들의 존재를 알지만 아직 버전 관리를 하지 않는다.
-
-<b>Unmodified (수정되지 않음):</b>
-이 상태의 파일은 이전에 이미 Git에 커밋된 적이 있는 파일들로, 마지막 커밋 이후로 아무런 변경이 없는 파일들을 말한다.
-즉, 파일이 변경되지 않았으므로 Git에 다시 커밋할 필요가 없다.
-
-<b>Modified (수정됨):</b>
-이 상태의 파일은 마지막 커밋 이후에 변경이 발생했지만, 아직 로컬 데이터베이스에 커밋되기 위한 스테이징 영역에 추가되지 않은 파일들을 말한다.
-git add 명령을 사용하여 이 변경을 스테이징 영역에 추가하기 전까지는 Git은 이 변경 사항을 추적하지 않는다.
-
-<b>Staged (스테이징됨):</b>
-이 상태의 파일은 현재 수정되고 스테이징 영역에 추가되어, 다음 커밋에 포함될 준비가 된 파일들을 말한다.
-git commit 명령을 사용하면, 스테이징 영역의 이 변경사항이 로컬 데이터베이스에 저장된다.
-
 
 # 명령어 모음
 
@@ -352,13 +351,13 @@ git remote 명령어는 원격 저장소를 관리하기 위한 명령어이다.
 git config 명령어는 Git의 설정 변수를 조회하거나 설정할 수 있게 해주는 명령어이다. 이 설정들은 시스템 전체, 특정 사용자, 또는 특정 프로젝트에 적용될 수 있다. 이러한 구성은 Git 작업의 많은 측면을 제어하는 데 사용된다, 예를 들면 사용자의 이메일, 사용자 이름, 사용하는 에디터, 사용하는 diff 알고리즘 등을 설정할 수 있다.
 
 * --local: 설정이 해당 저장소에만 적용된다(기본). .git/config 파일에 저장된다. 사용 예: git config --local user.name "Your Name"
-* --global: 설정이 시스템의 현재 사용자에게 적용된다. ~/.gitconfig 또는 ~/.config/git/config 파일에 저장돈다. 사용 예: git config --global user.email "your.email@example.com"
+* --global: 설정이 시스템의 현재 사용자에게 적용된다. ~/.gitconfig 또는 ~/.config/git/config 파일에 저장돈다. 사용 예: git config --global user.email "email_address", git config --global alias.st 'status'(git status 명령어를 git st로 줄이고 싶다면), git config --global --unset alias.별칭명(별칭제거), git config --global pull.rebase true
 * --system: 설정이 시스템의 모든 사용자에게 적용된다. /etc/gitconfig 파일에 저장된다. 사용 예: git config --system core.editor "vim"
 * --list (또는 -l): 저장된 모든 설정과 값을 리스트 형태로 보여준다. 사용 예: git config --list
 * --unset: 특정 설정 값을 제거한다. 사용 예: git config --unset user.email
 * --get: 특정 설정 값의 현재 값을 조회한다. 사용 예: git config --get user.name
 * --add: 기존 값에 새로운 값을 추가한다. 사용 예: git config --add user.name "Another Name"
-* --replace-all: 특정 설정의 모든 값을 주어진 값으로 바꾼다. 사용 예: git config --replace-all user.email "new.email@example.com"
+* --replace-all: 특정 설정의 모든 값을 주어진 값으로 바꾼다. 사용 예: git config --replace-all user.email "email_address"
 * --edit: 시스템의 기본 에디터를 사용하여 설정 파일을 직접 연다. 사용 예: git config --edit
 
 ## git clone
@@ -376,5 +375,76 @@ git clone은 원격 저장소의 복사본을 로컬 시스템에 만드는 데 
 * --single-branch: 하나의 브랜치만 복제한다. 지정된 브랜치의 커밋 히스토리만 가져오는 "얕은" 복제를 수행하게 되어, 다운로드 크기를 줄이는 데 도움이 될 수 있다. 사용 예: git clone --single-branch --branch develop url
 * --depth: 지정된 커밋만큼의 최근 이력을 가진 얕은 복제(shallow clone)를 수행한다. 사용 예: git clone --depth 1 url
 * --recurse-submodules: 저장소의 서브모듈도 함께 복제한다. 사용 예: git clone --recurse-submodules url
+
+## git push 
+git push 명령어는 로컬 저장소의 커밋을 원격 저장소에 업로드한다. 이를 통해 다른 개발자들과 협업하거나 코드를 원격 저장소에 백업할 수 있다.
+```javascript
+git push <원격 저장소 이름> <원격 브랜치로 푸시할 로컬 브랜치>
+```
+여기서 <원격 저장소 이름>은 대개 "origin"이다. "origin"은 클론(clone)을 통해 처음 저장소를 복사해올 때 Git이 자동으로 생성하는 기본 원격 저장소의 별칭이다. <원격 브랜치로 푸시할 로컬 브랜치>는 푸시하려는 로컬 브랜치의 이름이다.
+(참고로 별칭 변경은 git remote rename origin new-origin)
+
+* -u, --set-upstream: 푸시할 때 지정한 브랜치를 기본적인 상류(upstream) 브랜치로 설정한다. 추후 해당 브랜치로 푸시하거나 풀을 할 때 브랜치를 명시하지 않아도 된다. 사용 예: git push -u origin new-branch
+* --force: 변경 사항을 원격 브랜치로 강제로 푸시한다, 이 옵션은 원격 브랜치의 히스토리를 덮어쓰기 때문에 주의해서 사용해야 한다. 사용 예: git push origin branch-name --force 또는 git push origin +branch-name
+* --tags: 모든 태그를 함께 푸시한다. 사용 예: git push origin --tags(--tags 옵션은 저장소의 모든 태그를 원격으로 푸시) 또는 git push origin v1.0("v1.0"이라는 이름의 태그를 원격 저장소로 푸시)
+* --dry-run: 실제로 푸시하지 않고, 푸시될 변경 사항을 체크한다. 사용 예: git push --dry-run origin feature
+* --delete: 원격에 없는 로컬 변경 사항 삭제한다. 사용 예: git push origin --delete branch-name
+* --all: 로컬 저장소의 모든 브랜치를 원격 저장소로 푸시한다 사용 예: git push origin --all
+
+## git pull 
+git pull은 Git 명령어 중 하나로, 원격 저장소의 변경 사항을 로컬 저장소로 가져와 현재 브랜치에 병합한다. 기본적으로, git pull은 git fetch를 실행한 후 git merge를 사용하여 원격 저장소의 변경 사항을 현재 브랜치로 병합한다.
+
+* --rebase: 이 옵션은 원격 변경 사항을 병합하는 대신 현재 브랜치의 변경 사항을 원격 브랜치 위로 재배치한다. 사용 예: git pull --rebase origin master
+* --no-rebase: 기본적으로 설정되거나 구성된 재배치 대신 병합을 수행한다.(pull이 rebase가 기본설정인 경우 사용) 사용 예: git pull --no-rebase origin master
+* -q, --quiet: 진행 상황을 제외하고 메시지를 최소화한다. 사용 예: git pull -q origin master
+* --force: 서버의 업데이트 내역과 로컬의 업데이트 내역이 서로 상충하더라도 강제로 페치를 수행한다. 사용 예: git pull --force origin master
+* -X, --strategy-option=<option>: 병합 전략 옵션을 지정한다. 예를 들어, 충돌 해결 시 우선 순위를 정할 수 있다. 사용 예: git pull -X theirs origin master
+* --depth=<depth>: 불필요한 이력 정보 없이 최근 커밋만 가져올 수 있도록 히스토리의 깊이를 제한한다. 사용 예: git pull --depth=1 origin master
+
+### 기본설정,--rebase,--no-rebase 차이점
+
+| 구분           | 아무 설정도 안 함                                         | `--rebase`                                             | `--no-rebase`                                       |
+|----------------|-----------------------------------------------------------|-------------------------------------------------------|-----------------------------------------------------|
+| 동작           | 사용자의 Git 설정에 따라 다름 (기본적으로는 'fetch' 후 'merge') | 무조건 'fetch' 후 'rebase'                             | 무조건 'fetch' 후 'merge'                           |
+| 설명           | 전역 또는 저장소별 Git 설정에 따라 `git pull`이 'merge' 또는 'rebase'를 수행함(기본적으로는 'merge'가 수행) | `git pull`이 변경 사항을 'fetch' 한 다음 현재 브랜치에서 변경 사항을 'rebase'한다. 이는 현재 브랜치의 커밋들을 베이스 브랜치 위로 옮기고, 그 위에 새로 'fetch'한 커밋들을 적용 | `git pull`이 변경 사항을 'fetch' 한 다음 현재 브랜치에 'merge'를 수행한다. 이는 두 브랜치의 히스토리를 유지하면서 브랜치를 합친다. |
+| 사용 시나리오 | 사용자가 별도의 pull 동작을 설정하지 않았거나, 기본 설정을 사용하고자 할 때 | 커밋 히스토리를 깔끔하게 유지하고자 할 때 또는 특정 브랜치에서 작업 중 다른 변경 사항을 포함시키고 싶을 때. | 브랜치의 병합 히스토리를 유지하고 싶을 때 또는 리베이스로 인한 충돌을 피하고 싶을 때 |
+
+## git fetch 
+git fetch는 원격 저장소에서 데이터를 가져오는 Git 명령어이다. 이 명령은 로컬 저장소에 원격 저장소의 최신 커밋, 브랜치, 태그 등의 정보를 업데이트하지만, 현재 작업 중인 로컬 브랜치의 상태를 변경하진 않습니다. 이를 통해, 사용자는 먼저 최신 변경 사항을 검토하고 로컬 브랜치에 병합하거나 리베이스하기 전에 준비할 수 있다.
+
+git fetch origin feat 명령어를 사용하면, 실제로 로컬의 "feat" 브랜치에 직접적인 변화가 일어나지는 않는다. 대신, 원격 저장소(origin)의 "feat" 브랜치에 대한 최신 정보를 로컬에 가져오게 된다. 그리고 이 정보는 "origin/feat"라는 이름으로 참조된다.
+즉, 이 명령은 원격 브랜치의 최신 상태를 로컬에 반영하는 것이지만, 로컬 브랜치 "feat"에는 직접적인 변경을 가하지 않는다. 로컬 브랜치에 변경 사항을 병합하려면, git merge origin/feat와 같은 명령어를 별도로 실행해야 한다. 이렇게 하면 "origin/feat"의 변경 사항이 로컬의 "feat" 브랜치와 병합(merge)된다.
+
+git fetch origin feat를 실행했을 때 "origin/feat"라는 로컬 브랜치가 생성되는 것이 아니다. 대신, "origin/feat"는 원격 추적 브랜치(remote-tracking branch)라고 불리는 특별한 참조(reference)이다.
+원격 추적 브랜치는 원격 저장소에 있는 브랜치의 상태를 반영한다. 이것은 로컬에 있는 복사본이지만, 직접적으로 변경할 수 없는 read-only 형태의 참조이다. git fetch를 사용하면 원격 저장소의 최신 변경 사항을 반영하여 이러한 원격 추적 브랜치를 업데이트한다.
+
+"origin/feat"이 실제로 존재하는 브랜치는 아니며, 로컬 저장소에서 직접 변경하거나 체크아웃할 수 없다. 대신, 이것은 원격 브랜치 "feat"의 마지막 상태를 나타내며, 로컬에서 해당 상태를 보거나, 이를 기반으로 실제 로컬 브랜치를 생성하거나, 기존의 로컬 브랜치와 병합할 수 있다.
+실제로 로컬 브랜치를 생성하려면 git checkout feat 또는 git switch feat 명령어를 사용하여 "origin/feat"를 기반으로 새 브랜치를 생성하거나, 만약 "feat" 브랜치가 이미 존재한다면 원격 추적 브랜치의 변경 사항을 병합할 수 있다.
+
+* --all: 설정된 원격 저장소로부터 모든 브랜치와 데이터를 가져온다. 사용 예: git fetch --all
+* --append: 가져온 레퍼런스를 기존 레퍼런스에 추가한다. 사용 예: git git fetch --append origin branch-name
+* --depth=<depth>: 지정한 수의 최신 커밋만 가져온다. 이는 얕은 클론을 만드는 데 사용된다. 사용 예: git fetch --depth=1 origin branch-name("origin"에서 "branch-name" 브랜치의 최신 커밋 1개만 가져옴)
+* --force: 로컬 변경 사항을 덮어쓰고, 로컬 브랜치를 원격 브랜치와 일치하게 강제 업데이트한다. 사용 예: git fetch --force origin branch-name
+* --prune: 로컬에는 존재하지만 원격에는 더 이상 존재하지 않는 브랜치를 삭제한다. 사용 예: git fetch --prune origin
+* --no-tags: 태그를 가져오지 않고 브랜치 정보만 가져온다. 사용 예: git fetch --no-tags origin branch-name
+* --tags: 모든 태그를 가져오고 추가적으로 다른 객체를 가져온다. 사용 예: git fetch --tags origin
+* --dry-run: 실제로 가져오지 않고 가져올 내용만 확인한다. 사용 예: git fetch --dry-run origin branch-name
+
+## git merge 
+git merge 명령어는 두 개 또는 그 이상의 개발 히스토리를 통합한다. 주로 두 개의 브랜치를 병합할 때 사용된다.
+
+* --no-commit: 병합은 이루어지지만, 병합 커밋은 자동으로는 이루어지지 않는다. 사용자가 수동으로 커밋해야 한다. 사용 예: git merge --no-commit feature-branch
+* --no-ff: 항상 병합 커밋을 생성하며, "fast-forward" 병합을 수행하지 않는다. 이 옵션은 두 브랜치의 히스토리를 유지한다. 사용 예: git merge --no-ff feature-branch
+* --ff-only: "fast-forward" 병합만 수행하며, "fast-forward" 병합이 불가능할 경우 병합하지 않고 실패한다.(현재 체크아웃된 브랜치의 헤드가 feature-branch의 특정 커밋을 기반으로 한 후속 커밋이 없음을 의미) 사용 예: git merge --ff-only feature-branch
+* --squash: 변경 사항을 하나의 새 커밋으로 병합하지만, 병합 커밋은 생성하지 않는다. feature-branch의 모든 변경 사항을 하나의 커밋으로 압축하지만, 자동으로 커밋하지는 않는다.스테이징 영역에 변경 사항들이 추가되어 기다리는 상태가 된다. 사용 예: git merge --squash feature-branch
+* --abort: 병합 중 문제가 발생한 경우, 병합 이전 상태로 되돌린다. 사용 예: git merge --abort
+* -m: 병합 커밋에 사용될 커밋 메시지를 지정한다. 사용 예: git merge -m "Merge feature branch" feature-branch
+
+| 구분 | 병합 커밋(Merge Commit) | Fast-forward |
+| --- | --- | --- |
+| 정의 | 두 개의 브랜치를 병합할 때 생성되는 특별한 커밋이다. 병합 커밋은 두 부모를 가지며, 병합하는 브랜치의 히스토리를 모두 포함한다. | "Fast-forward"는 현재 브랜치(일반적으로 'master')가 병합하려는 브랜치(예: 'feature-branch')로 "앞당겨지는" 상황을 의미한다. 이 경우 별도의 병합 커밋 없이도 병합할 수 있다. |
+| 히스토리 | 병합 커밋은 프로젝트의 커밋 히스토리에 명시적인 구조를 제공하며, 어떤 변경 사항이 어떤 브랜치에서 왔는지 명확하게 보여준다. | Fast-forward는 병합 대상 브랜치의 모든 커밋을 현재 브랜치로 그대로 가져와서 커밋 히스토리가 선형적으로 유지된다. |
+| 사용 시나리오 | 팀이 공동으로 작업하는 브랜치에서 여러 개발자가 다양한 기능을 개발할 때 유용하다. 병합 커밋을 통해 언제 어떤 기능이 추가되었는지 쉽게 추적할 수 있다. | 개별적으로 작업한 작은 기능이나, 병합할 커밋이 현재 브랜치의 앞쪽에만 있는 경우에 유용하다. 히스토리를 간결하게 유지하고 싶을 때 사용한다. |
+
 
 
