@@ -3,6 +3,7 @@
   <img src="https://github.com/FE-SW/StudyGit/assets/54196723/dd0e18e0-8285-4166-8737-f3be9ae2ef25" width="45%" align="middle" />
   <img src="https://github.com/FE-SW/StudyGit/assets/54196723/fdf72f55-7ca0-4a7c-b317-62441c385168" width="45%" align="middle" /> 
 </p>
+
 <b>Working Directory:</b><br/>
 작업 디렉토리는 프로젝트의 실제 파일들이 위치하는 곳이다. 이곳에 있는 파일들은 아직 버전 관리에 포함되지 않은 상태이거나, 수정 중인 파일일 수 있다. 여기서 사용자는 파일을 생성, 수정, 삭제 등의 작업을 하며 코드를 편집한다.
 
