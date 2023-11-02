@@ -53,6 +53,33 @@ Git의 핵심 요소 중 하나는 코드베이스의 변화를 "커밋" 단위�
 
 간단하게 요약하자면, FETCH_HEAD는 최근에 가져온 변경 사항을, ORIGIN/HEAD는 원격 저장소의 기본 브랜치의 상태를, HEAD는 현재 체크아웃된 로컬 브랜치의 상태를, ORIG_HEAD는 중요한 변경 이전의 HEAD의 상태를, 그리고 MERGE_HEAD는 병합할 커밋들의 정보를 나타낸다.
 
+### 참조값 확인
+
+#### 1.FETCH_HEAD:
+```javascript
+cat .git/FETCH_HEAD
+```
+#### 2.ORIGIN/HEAD:
+```javascript
+git rev-parse ORIGIN/HEAD
+```
+
+#### 3.HEAD:
+```javascript
+git rev-parse HEAD
+```
+
+#### 4.ORIG_HEAD:
+```
+git rev-parse ORIG_HEAD
+```
+
+#### 5.MERGE_HEAD (이 파일은 병합 중에만 존재. 병합 중이 아닐 경우 이 파일이 존재하지 않을 수 있음):
+```javascript
+cat .git/MERGE_HEAD
+```
+
+
 #### 심볼
 HEAD: 현재 체크아웃된 커밋을 나타내는 포인터
 ```javascript
